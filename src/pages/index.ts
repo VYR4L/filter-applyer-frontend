@@ -1,0 +1,9 @@
+export { HomePage } from './HomePage';
+export { MarrHildrethPage } from './MarrHildrethPage';
+export { CannyPage } from './CannyPage';
+export { BoxFiltersPage } from './BoxFiltersPage';
+export { FreemanChainPage } from './FreemanChainPage';
+export { WatershedPage } from './WatershedPage';
+export { OtsuPage } from './OtsuPage';
+export { CountingPage } from './CountingPage';
+export { SegmentationPage } from './SegmentationPage';
