@@ -18,6 +18,11 @@ interface AppState {
   setProcessedImage: (image: string) => void;
   clearImages: () => void;
   
+  // JSON Results (for Freeman Chain and Object Count)
+  jsonResult: any | null;
+  setJsonResult: (result: any) => void;
+  clearJsonResult: () => void;
+  
   // Loading state
   isProcessing: boolean;
   setIsProcessing: (processing: boolean) => void;
@@ -62,7 +67,13 @@ export const useAppStore = create<AppState>()(
             processedImage: null,
             fileName: null,
           },
+          jsonResult: null,
         }),
+      
+      // JSON Results
+      jsonResult: null,
+      setJsonResult: (result: any) => set({ jsonResult: result }),
+      clearJsonResult: () => set({ jsonResult: null }),
       
       // Loading
       isProcessing: false,

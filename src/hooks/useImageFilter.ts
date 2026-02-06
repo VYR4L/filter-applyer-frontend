@@ -19,7 +19,7 @@ interface FilterParams {
 export const useImageFilter = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const { imageData, setProcessedImage, setIsProcessing } = useAppStore();
+  const { imageData, setProcessedImage, setIsProcessing, setJsonResult, clearJsonResult } = useAppStore();
 
   const applyFilter = async (filterType: FilterType, params: FilterParams) => {
     if (!imageData.originalImage) {
@@ -30,6 +30,7 @@ export const useImageFilter = () => {
     setIsLoading(true);
     setIsProcessing(true);
     setError(null);
+    clearJsonResult();
 
     try {
       let response;
@@ -62,8 +63,7 @@ export const useImageFilter = () => {
           });
           // Freeman chain returns JSON, not an image
           if (response.success && response.data) {
-            console.log('Freeman Chain Result:', response.data);
-            setError('Freeman Chain processado! Veja o console para detalhes.');
+            setJsonResult(response.data);
           }
           break;
 
@@ -84,9 +84,7 @@ export const useImageFilter = () => {
           });
           // Object count returns JSON
           if (response.success && response.data) {
-            console.log('Object Count Result:', response.data);
-            const countData = response.data as any;
-            setError(`${countData.object_count} objetos encontrados usando ${countData.method}`);
+            setJsonResult(response.data);
           }
           break;
 
